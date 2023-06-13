@@ -25,5 +25,3 @@ export const createUser: RequestHandler = async (req, res, next) => {
         next(error);
     }
 }
-
-

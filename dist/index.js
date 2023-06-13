@@ -10,7 +10,6 @@ app.use(express.json());
 app.use('/api', router);
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((error, req, res, next) => {
-    console.error(error);
     let message = "An unknown error occurred";
     if (error instanceof Error)
         message = error.message;
