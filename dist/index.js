@@ -6,7 +6,8 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT;
 const connection = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER}/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`;
-app.use(router);
+app.use(express.json());
+app.use('/api', router);
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((error, req, res, next) => {
     console.error(error);
