@@ -1,23 +1,15 @@
 import express, { NextFunction, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import router from './routes.js';
 dotenv.config();
-import UserModel from './models/user.js';
 
 const app = express();
 const port = process.env.PORT;
 
 const connection = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER}/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`
 
-app.get('/', async (req, res, next) => {
-    try {
-        const users = await UserModel.find().exec();
-
-        res.status(200).json(users);        
-    } catch (error) {
-        next(error);
-    }
-});
+app.use(router);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
