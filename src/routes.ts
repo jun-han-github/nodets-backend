@@ -4,7 +4,8 @@ import { login, logout } from './controllers/loginController.js';
 
 const router = express.Router();
 
-router.get('/', getAuthenticatedUser);
+router.get('/auth', getAuthenticatedUser);
+
 router.get('/users', getUsers);
 router.post('/users', createUser);
 
