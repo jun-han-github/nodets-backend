@@ -34,13 +34,13 @@ app.use('/api', router);
 app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
     let message = "An unknown error occurred";
     let statusCode = 500;
-
+    
     if (isHttpError(error)) {
         message = error.message
         statusCode = error.status;
     }
 
-    res.status(statusCode).json({ message })
+    res.status(statusCode).json({ message });
 });
 
 app.use((req, res, next) => {

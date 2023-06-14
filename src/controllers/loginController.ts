@@ -12,9 +12,9 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
     const { email, password } = req.body;
 
     try {
-        if (!email || !password) {
-            throw createHttpError(400, "Fields missing");
-        }
+        if (!email) throw createHttpError(400, "Please provide a name");
+        if (!password) throw createHttpError(400, "Please proide a password");
+        
 
         const existingUser = await UserModel.findOne({ email }).select("+email +password").exec();
 

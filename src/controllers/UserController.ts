@@ -2,6 +2,7 @@ import { RequestHandler } from 'express';
 import UserModel from '../models/user.js';
 import createHttpError from 'http-errors';
 import bcrypt from 'bcrypt';
+import { checkDuplicateEmail } from '../services/authService.js';
 
 export const getAuthenticatedUser: RequestHandler = async (req, res, next) => {
     const authenticatedUserId = req.session.userId;
@@ -42,6 +43,8 @@ export const createUser: RequestHandler<unknown, unknown, SignUpBody, unknown> =
         if (!email || !name || !password) {
             throw createHttpError(400, 'Missing fields');
         }
+
+        await checkDuplicateEmail(UserModel, email);
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
