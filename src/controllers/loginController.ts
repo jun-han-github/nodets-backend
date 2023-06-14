@@ -12,9 +12,8 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
     const { email, password } = req.body;
 
     try {
-        if (!email) throw createHttpError(400, "Please provide a name");
-        if (!password) throw createHttpError(400, "Please proide a password");
-        
+        if (!email) throw createHttpError(400, "Please provide your email");
+        if (!password) throw createHttpError(400, "Please provide a password");
 
         const existingUser = await UserModel.findOne({ email }).select("+email +password").exec();
 
@@ -29,6 +28,7 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
         }
         
         // somewhere here we also get a cookie - check Postman
+        console.log('session id: ', req.session.userId);
         req.session.userId = existingUser._id;
         res.status(201).json(existingUser);        
     } catch (error) {
