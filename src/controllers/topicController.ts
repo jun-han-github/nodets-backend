@@ -6,7 +6,7 @@ export const getTopics: RequestHandler = async (req, res, next) => {
     try {
         const topics = await TopicModel.find().exec();
 
-        res.status(201).json(topics);
+        res.status(200).json(topics);
     } catch (error) {
         next(error);
     }
