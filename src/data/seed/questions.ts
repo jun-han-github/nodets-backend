@@ -34,4 +34,13 @@ const seedSAQuestions = [
             { id: 4, answer: false, option: 'Extend the file share environment to Amazon Elastic File System (Amazon EFS) with a Multi-AZ configuration. Migrate all the data to Amazon EFS' },
         ],
     },
+    {
+        topic_tag: 'CC1AWS1R53',
+        question: 'To delete hosted zones in Route 53, you first have to delete records with NS or SOA for Type.',
+        question_type: 'single',
+        options: [
+            { id: 1, answer: true, option: 'False' },
+            { id: 2, asnwer: false, option: 'True' }
+        ],
+    },
 ]

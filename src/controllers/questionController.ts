@@ -26,13 +26,9 @@ export const submitAnswer: RequestHandler = async (req, res, next) => {
 
         const filter = { userId, questionId };
         const replace = req.body;
-        const options = { upsert: true, new: true, returnNewDocument: true }
+        const options = { upsert: true, returnNewDocument: true }
 
         existingAnswer = await AnswerModel.findOneAndUpdate(filter, replace, options);
-
-        if (!existingAnswer) {
-            existingAnswer = await AnswerModel.create(req.body);
-        }
 
         res.status(201).json(existingAnswer);
     } catch (error) {
