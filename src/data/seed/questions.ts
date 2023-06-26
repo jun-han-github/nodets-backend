@@ -1,10 +1,20 @@
 import QuestionModel from "../../models/question.js";
+import AnswerModel from "../../models/answer.js";
+import UserModel from "../../models/user.js";
 
 export async function seedData() {
     try {
         await QuestionModel.deleteMany({});
-        await QuestionModel.insertMany(seedSAQuestions);
-        console.log('Data seeded successfully');
+        console.log('Questions deleted.');
+
+        await AnswerModel.deleteMany({});
+        console.log('Answers deleted.');
+
+        await UserModel.updateMany({}, { $unset: { "topics": 1 }});
+        console.log('Topics in User deleted.');
+
+        // await QuestionModel.insertMany(seedSAQuestions);
+        // console.log('Data seeded successfully');
     } catch (error) {
         console.error('Failed to seed data: ', error);
     }

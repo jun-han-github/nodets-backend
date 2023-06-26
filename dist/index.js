@@ -7,7 +7,8 @@ import morgan from 'morgan';
 import cors from 'cors';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-import { seedData } from './data/seed/questions.js';
+import { seedData as seedQuestionData } from './data/seed/questions.js';
+import { seedData as seedTopicData } from './data/seed/topics.js';
 dotenv.config();
 const app = express();
 const port = process.env.PORT;
@@ -46,6 +47,7 @@ mongoose.connect(connection).then(() => {
     app.listen(port, () => {
         console.log('Listening to port: ', port);
     });
-    seedData();
+    seedQuestionData();
+    seedTopicData();
 }).catch(console.error);
 //# sourceMappingURL=index.js.map
