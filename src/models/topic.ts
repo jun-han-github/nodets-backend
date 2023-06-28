@@ -1,13 +1,14 @@
 import { InferSchemaType, Schema, model } from "mongoose";
 
 const topicSchema = new Schema({
+    domain: { type: String, required: true },
+    subject: { type: String, required: true },
     name: { type: String, required: true },
     topic_tag: { type: String, required: true },
     subtopics: [{
         subtopic_tag: { type: String },
         name: { type: String },
     }],
-    questions: [{ type: Schema.Types.ObjectId, ref: 'Question' }]
 });
 
 export type Topic = InferSchemaType<typeof topicSchema>

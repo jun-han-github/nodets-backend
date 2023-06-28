@@ -2,10 +2,10 @@ import TopicModel from "../../models/topic.js";
 
 export async function seedData() {
     try {
-        await TopicModel.insertMany(seedTopics);
+        // await TopicModel.insertMany(seedTopics);
         console.log('Topics seeded successfully');
     } catch (error) {
-        console.error('Failed to seed data: ', error);
+        console.error('Failed to seed topics data: ', error);
     }
 }
 
