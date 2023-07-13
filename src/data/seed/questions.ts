@@ -13,8 +13,8 @@ export async function seedData() {
         await UserModel.updateMany({}, { $unset: { "topics": 1 }});
         console.log('Topics in User deleted.');
 
-        // await QuestionModel.insertMany(seedSAQuestions);
-        // console.log('Data seeded successfully');
+        await QuestionModel.insertMany(seedSAQuestions);
+        console.log('Data seeded successfully');
     } catch (error) {
         console.error('Failed to seed data: ', error);
     }
