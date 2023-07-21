@@ -56,6 +56,10 @@ const seedTopics = [
                 subtopic_tag: "SE1DO1D1DI1",
                 subtopic: "Docker Images",
             },
+            {
+                subtopic_tag: "SE1DO1D1DC2",
+                subtopic: "Docker Commands",
+            },
         ],
     },
     // {
