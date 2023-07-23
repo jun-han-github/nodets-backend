@@ -26,11 +26,9 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
         if (!passwordMatch) {
             throw createHttpError(401, "Invalid credentials");
         }
-        
-        // somewhere here we also get a cookie - check Postman
-        console.log('session id: ', req.session.userId);
+
         req.session.userId = existingUser._id;
-        res.status(201).json(existingUser);        
+        res.status(201).json(existingUser);
     } catch (error) {
         next(error);
     }

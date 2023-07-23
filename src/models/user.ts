@@ -7,7 +7,8 @@ const userSchema = new Schema({
     industry: { type: String },
     profession: { type: String },
     topics: [{
-        topic_tag: { type: String },
+        topic: { type: String, required: true },
+        topic_tag: { type: String, required: true },
         answered: { type: [String], ref: 'Topic' },
     }],
 }, { timestamps: true });

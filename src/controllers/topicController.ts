@@ -35,10 +35,23 @@ export const getSearchTopics: RequestHandler = async (req, res, next) => {
 }
 
 export const addTopicToUser: RequestHandler = async (req, res, next) => {
-    const { userId, topic } = req.body;
+    const { topic } = req.body;
+    const userId = req.session.userId;
 
     try {
-        const user = await UserModel.find({ userId }).exec();
+        const user = await UserModel.findOne({ _id: userId }).exec();
+        console.log('USER: ', user);
+
+        if (user) {
+            topic.forEach((item: any) => user.topics.push({
+                topic: item.subtopic,
+                topic_tag: item.subtopic_tag,
+                answered: []
+            }));
+
+            user.save();
+            res.status(200).json(req.session);
+        }
 
     } catch (error) {
         next(error);
