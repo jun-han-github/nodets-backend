@@ -4,6 +4,8 @@ import AnswerModel from "../models/answer.js";
 import UserModel from "../models/user.js";
 import createHttpError from "http-errors";
 
+// error TS2345: Argument of type '{ topic_tag: any; answered: any[]; }' is not assignable to parameter of type '{ topic: string; topic_tag: string; answered: string[]; }'.
+
 export const getQuestions: RequestHandler = async (req, res, next) => {
 
     const topic_tag = req.params.topicTag;
@@ -27,7 +29,7 @@ export const getQuestions: RequestHandler = async (req, res, next) => {
 export const submitAnswer: RequestHandler = async (req, res, next) => {
 
     let existingAnswer = null;
-    const { userId, questionId, topic_tag } = req.body;
+    const { userId, questionId, topic, topic_tag } = req.body;
 
     try {
         if (!userId || !questionId) throw createHttpError(401, "Missing information in AnswerModel");
@@ -40,7 +42,7 @@ export const submitAnswer: RequestHandler = async (req, res, next) => {
                 if (target_topic) {
                     target_topic.answered.push(questionId);
                 } else {
-                    user.topics.push({ topic_tag, answered: [questionId] });
+                    user.topics.push({ topic, topic_tag, answered: [questionId] });
                 }
                 user.save();
             }
