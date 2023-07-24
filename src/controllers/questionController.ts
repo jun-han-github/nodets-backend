@@ -11,14 +11,16 @@ export const getQuestions: RequestHandler = async (req, res, next) => {
     const topic_tag = req.params.topicTag;
     
     try {
-        let questions = {};
+        // let questions = {};
 
-        const user = await UserModel.findOne({ 'topics.topic_tag': topic_tag }, { 'topics.$': 1, _id: 0 }).exec();
-        // we dont want to get the questions that are in user.topic[topic_tag]
+        // const user = await UserModel.findOne({ 'topics.topic_tag': topic_tag }, { 'topics.$': 1, _id: 0 }).exec();
+        // // we dont want to get the questions that are in user.topic[topic_tag]
         
-        if (user) {
-            questions = await QuestionModel.find({ _id: { $nin: user.topics[0].answered }, topic_tag }).exec();
-        }
+        // if (user) {
+        //     questions = await QuestionModel.find({ _id: { $nin: user.topics[0].answered }, topic_tag }).exec();
+        // }
+
+        const questions = await QuestionModel.find({ topic_tag }).exec();
 
         res.status(200).json(questions);
     } catch (error) {

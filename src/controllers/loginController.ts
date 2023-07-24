@@ -27,7 +27,6 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
             throw createHttpError(401, "Invalid credentials");
         }
 
-        req.session.userId = existingUser._id;
         res.status(201).json(existingUser);
     } catch (error) {
         next(error);
