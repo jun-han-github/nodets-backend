@@ -44,6 +44,18 @@ const seedTopics = [
     },
     {
         domain: "Software Engineering",
+        subject: "Backendend Development",
+        topic: "Nodejs",
+        topic_tag: "SE1BD1NJ1",
+        subtopics: [
+            {
+                subtopic_tag: "SE1BD1NJ1EJ1",
+                subtopic: "Express.js",
+            },
+        ],
+    },
+    {
+        domain: "Software Engineering",
         subject: "DevOps",
         topic: "Docker",
         topic_tag: "SE1DO1D1",
