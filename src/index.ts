@@ -9,6 +9,8 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import { seedData as seedQuestionData } from './data/seed/questions.js';
 import { seedData as seedTopicData } from './data/seed/topics.js';
+// import { seedData as seedProfessionData } from './data/seed/profession.js';
+// import { seedData as seedIndustriesData } from './data/seed/industry.js';
 dotenv.config();
 
 const app = express();
@@ -62,5 +64,7 @@ mongoose.connect(connection).then(() => {
 
     seedQuestionData();
     seedTopicData();
+    // seedProfessionData();
+    // seedIndustriesData();
 
 }).catch(console.error);

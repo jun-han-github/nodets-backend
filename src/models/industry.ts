@@ -1,9 +1,8 @@
 import { InferSchemaType, Schema, model } from "mongoose";
 
 const industrySchema = new Schema({
-    industry: [
-        { name: String, required: true, unique: true }
-    ],
+    tag: { type: String, required: true },
+    name: { type: String, required: true, unique: true }
 });
 
 export type Industry = InferSchemaType<typeof industrySchema>
